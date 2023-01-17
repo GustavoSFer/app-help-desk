@@ -17,7 +17,7 @@
   if ($usuario_autenticado) {
     echo 'Usuário autenticado';
   } else {
-    echo 'Erro na autenticação do usuário';
+    header('Location: index.php?login=erro');
   };
 
   // Pegando as informações pela super global GET e o nome é pelo name que foi informado la no HTML e são enviados como paramentros; 
@@ -32,5 +32,5 @@
   $_POST['email'];
   $_POST['senha'];
   */
-  
+
 ?>
