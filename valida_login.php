@@ -1,5 +1,8 @@
 <?php
 
+  session_start();
+  $_SESSION['autenticado'];
+
   $usuario_autenticado = false;
 
   // Simulando banco de dados
@@ -16,7 +19,9 @@
 
   if ($usuario_autenticado) {
     echo 'Usuário autenticado';
+    $_SESSION['autenticado'] = 'SIM';
   } else {
+    $_SESSION['autenticado'] = 'NAO';
     header('Location: index.php?login=erro');
   };
 
