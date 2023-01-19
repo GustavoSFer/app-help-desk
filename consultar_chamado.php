@@ -8,7 +8,17 @@
   while (!feof($arquivo)) {
     // fgets => Retorna a informação da linha do arquivo;
     $registro = fgets($arquivo);
-    $chamados[] = $registro;
+    $chamado_dados = explode('#', $chamado);
+    if ($_SESSION['perfil_id'] == 2) {
+      // Só vamos exibir o chamado, se ele foi criado pelo usuario
+      if ($_SESSION['id'] != $chamado_dados[0]) {
+        continue;
+      } else {
+        $chamados[] = $registro;
+      }
+    } else {
+      $chamados[] = $registro;
+    }
   }
 
   fclose($arquivo);
@@ -61,19 +71,7 @@
                 <?
                   $chamado_dados = explode('#', $chamado);
 
-                  if ($_SESSION['perfil_id'] == 2) {
-                    // Só vamos exibir o chamado, se ele foi criado pelo usuario
-                    if ($_SESSION['id'] != $chamado_dados[0]) {
-                      continue;
-                    }
-                  }
-
-                  /*
-                    chamado_dados é um array com 3 posições
-                    Neste caso estou verificando se o array é menor que 3 posição
-                    caso seja menor sabemos que tem um dados em branco e ele não será impresso.
-                  */
-                    if (count($chamado_dados) < 3) {
+                  if (count($chamado_dados) < 3) {
                     continue;
                   }
                 ?>
